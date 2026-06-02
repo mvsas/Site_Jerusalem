@@ -36,7 +36,7 @@
         <div id="cardsGrid" class="grid gap-6 lg:grid-cols-3">
           <!-- Card 1: Muro das Lamentações -->
           <article class="group rounded-2xl border border-white/10 bg-gradient-to-b from-slate-800 to-slate-900/80 overflow-hidden shadow-xl shadow-black/20 transition-all hover:shadow-2xl hover:shadow-brandgreen/20" data-category="religious">
-            <img src="./img/lamentacoes/lamentacoes.jpg" alt="Muro das Lamentações" class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105">
+            <img src="./muro1.jpg" alt="Muro das Lamentações" class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105">
             <div class="p-6">
               <div class="mb-3 flex items-center justify-between">
                 <h3 class="text-xl font-semibold text-white">Muro das Lamentações</h3>

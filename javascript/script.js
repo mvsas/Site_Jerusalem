@@ -4,10 +4,16 @@
           Esta função espera que o DOM esteja totalmente carregado
           antes de inicializar os comportamentos de navegação e filtros.
         */
+        // Debug: confirm script was loaded
+        console.log('script.js loaded');
+
         document.addEventListener('DOMContentLoaded', function () {
+          console.log('DOMContentLoaded - initializing site scripts');
           initMobileNav();
           initFilterTabs();
           initSmoothScroll();
+          initHeaderOnScroll();
+          initSearchToggle();
         });
 
         /*
@@ -86,3 +92,50 @@
             });
           });
         }
+
+            /*
+              Adiciona classe 'scrolled' ao header quando a página é rolada.
+              Mantemos o handler simples e leve (passive:true).
+            */
+            function initHeaderOnScroll() {
+              const header = document.getElementById('main-header');
+              if (!header) return;
+
+              const onScroll = function () {
+                const scrolled = window.scrollY > 60;
+                header.classList.toggle('scrolled', scrolled);
+              };
+
+              window.addEventListener('scroll', onScroll, { passive: true });
+              // executa imediatamente para aplicar estado correto ao carregar
+              onScroll();
+            }
+
+            /*
+              Toggle simples para o campo de busca em desktop.
+              Em telas >= md, o input abre/fecha com animação via CSS.
+            */
+            function initSearchToggle() {
+              const searchToggle = document.getElementById('searchToggle');
+              const siteSearch = document.getElementById('site-search');
+              if (!searchToggle || !siteSearch) return;
+
+              const input = siteSearch.querySelector('input');
+
+              searchToggle.addEventListener('click', function () {
+                siteSearch.classList.toggle('open');
+                if (siteSearch.classList.contains('open')) {
+                  input.focus();
+                } else {
+                  input.blur();
+                }
+              });
+
+              // Fechar ao pressionar Escape
+              input.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                  siteSearch.classList.remove('open');
+                  input.blur();
+                }
+              });
+            }
